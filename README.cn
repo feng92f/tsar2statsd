@@ -1,11 +1,29 @@
 Tsar介绍
 ------------
+git clone repo
+cd repo
+cd src
+make
+./send.sh
+
+
+
+
+
+
+
+
+
+
+
+
 Tsar是淘宝的一个用来收集服务器系统和应用信息的采集报告工具，如收集服务器的系统信息（cpu，mem等），以及应用数据（nginx、swift等），收集到的数据存储在服务器磁盘上，可以随时查询历史信息，也可以将数据发送到nagios报警。
 
 Tsar能够比较方便的增加模块，只需要按照tsar的要求编写数据的采集函数和展现函数，就可以把自定义的模块加入到tsar中。
 
 安装
 -------------
+
 Tsar目前托管在github上，下载编译安装步骤:
 
     $git clone git://github.com/kongjian/tsar.git
