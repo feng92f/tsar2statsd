@@ -25,11 +25,11 @@
  * output data to std output (history or live mode)
  */
 void running_print();
+
 #ifdef OLDTSAR
 void running_current();
 void running_check(int check_type);
 #endif
 void running_print_live();
-
 
 #endif

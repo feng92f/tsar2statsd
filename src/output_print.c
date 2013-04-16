@@ -135,10 +135,34 @@ void printf_result(double result)
 	printf("%s", PRINT_DATA_SPLIT);
 }
 
+char * str_trim2(char * src)
+{
+  int i = 0;
+  char *begin = src;
+  while(src[i] != '\0'){
+    if(src[i] != ' '){
+      break;
+    }else{
+      begin++;
+    }
+    i++;
+  }
+  return begin;
+}
+
+
+
+
+
+
+
 
 void print_array_stat(struct module *mod, double *st_array)
 {
 	int i;
+  char *hdr;
+	char  msg[LEN_10240] = {0};
+
 	struct mod_info *info = mod->info;
 
 	for (i=0; i < mod->n_col; i++) {
@@ -147,8 +171,9 @@ void print_array_stat(struct module *mod, double *st_array)
 			if (!st_array || !mod->st_flag || st_array[i] < 0) {
 				/* print record */
 				if (((DATA_SUMMARY == conf.print_mode) && (SPEC_BIT == info[i].summary_bit))
-						|| ((DATA_DETAIL == conf.print_mode) && (SPEC_BIT == info[i].summary_bit)))
+						|| ((DATA_DETAIL == conf.print_mode) && (SPEC_BIT == info[i].summary_bit))){
 					printf("------%s", PRINT_DATA_SPLIT);
+        }
 			} else {
 				/* print record */
 				if (((DATA_SUMMARY == conf.print_mode) && (SPEC_BIT == info[i].summary_bit))
@@ -162,17 +187,32 @@ void print_array_stat(struct module *mod, double *st_array)
 			if (!st_array || !mod->st_flag || st_array[i] < 0) {
 				/* print record */
 				if (((DATA_SUMMARY == conf.print_mode) && (SUMMARY_BIT == info[i].summary_bit))
-						|| ((DATA_DETAIL == conf.print_mode) && (HIDE_BIT != info[i].summary_bit)))
-					printf("------%s", PRINT_DATA_SPLIT);
+						|| ((DATA_DETAIL == conf.print_mode) && (HIDE_BIT != info[i].summary_bit))){
+				printf("------%s", PRINT_DATA_SPLIT);
+        }
 			} else {
 				/* print record */
 				if (((DATA_SUMMARY == conf.print_mode) && (SUMMARY_BIT == info[i].summary_bit))
-						|| ((DATA_DETAIL == conf.print_mode) && (HIDE_BIT != info[i].summary_bit)))
-					printf_result(st_array[i]);
+						|| ((DATA_DETAIL == conf.print_mode) && (HIDE_BIT != info[i].summary_bit))){}
+
+
+					/*printf_result(st_array[i]); */
+          hdr = info[i].hdr;
+
+				  printf("agents.frank-dev.%s.%s:%.2f|g\n", str_trim2(mod->name),str_trim2(hdr),st_array[i]);
+
+
 			}
 		}
 	}
 }
+
+
+
+
+
+
+
 
 
 /* print current time */
@@ -218,7 +258,7 @@ void print_record()
 				printf("%s", PRINT_SEC_SPLIT);
 		}
 	}
-	printf("\n");
+	//printf("\n");
 }
 
 
@@ -230,7 +270,7 @@ void running_print_live()
 	collect_record();
 
 	/* print header */
-	print_header();
+	/*print_header();*/
 
 	/* set struct module fields */
 	init_module_fields();
@@ -246,7 +286,7 @@ void running_print_live()
 
 		if (!((print_num) % DEFAULT_PRINT_NUM) || re_p_hdr) {
 			/* get the header will print every DEFAULT_PRINT_NUM */
-			print_header();
+		/*	print_header();*/
 			re_p_hdr = 0;
 			print_num = 1;
 		}
@@ -257,7 +297,7 @@ void running_print_live()
 		}
 
 		/* print current time */
-		print_current_time();
+		/*print_current_time();*/
 		print_record();
 
 		print_num++;
