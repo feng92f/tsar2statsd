@@ -15,6 +15,7 @@ install:
 	cp modules/*.so /usr/local/tsar/modules
 	#copy bin file
 	cp src/tsar /usr/bin/tsar
+	cp src/send.sh /usr/bin/tsar-udp
 	#copy config file
 	cp conf/tsar.conf /etc/tsar/tsar.conf
 	cp conf/tsar.logrotate /etc/logrotate.d/tsar
@@ -39,6 +40,7 @@ uninstall:
 	rm -f /usr/local/man/man8/tsar.8
 	#rm tsar
 	rm -f /usr/bin/tsar
+	rm -f /usr/bin/tsar-udp
 	#rm tsardevel
 	rm -f /usr/bin/tsardevel
 	#backup configure file

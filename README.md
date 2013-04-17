@@ -1,12 +1,10 @@
 Tsar porting to Statsd
 ----------------------
 
-
-
 $git clone git://github.com/feng92f/tsar.git
 $cd tsar
-$cd src
 $make
+$make install
 $./send.sh
 
 
