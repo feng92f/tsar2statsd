@@ -11,9 +11,10 @@ $git clone git://github.com/feng92f/tsar.git
 $cd tsar
 $make
 $make install
-$tsar-udp
+$tsar-udp statsd_server_ip statsd_server_port
 
 
+or run as daemon $nohup tsar-udp statsd_server_ip statsd_server_port &
 
 
 
