@@ -1,3 +1,18 @@
+Tsar porting to Statsd
+----------------------
+
+
+
+$git clone git://github.com/feng92f/tsar.git
+$cd tsar
+$cd src
+$make
+$./send.sh
+
+
+
+
+
 Introduction
 ------------
 Tsar(Taobao System Activity Reporter) is an system and application monitor tools, such as system info(cpu, load, io), or apps info(nginx,swift). The collect data can be stored at local disk, you can also send the data to nagios.
