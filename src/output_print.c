@@ -159,11 +159,24 @@ char * str_trim2(char * src)
 
 void print_array_stat(struct module *mod, double *st_array)
 {
-	int i;
+  int	i = 0, j;
   char *hdr;
 	char  msg[LEN_10240] = {0};
 
 	struct mod_info *info = mod->info;
+
+  char	host_name[LEN_64] = {0};
+
+  /* get hostname */
+  if (0 != gethostname(host_name, sizeof(host_name))) {
+
+  }
+  while (host_name[i]) {
+    if (!isprint(host_name[i++])) {
+      host_name[i-1] = '\0';
+      break;
+    }
+  }
 
 	for (i=0; i < mod->n_col; i++) {
 		if(mod->spec){
@@ -199,7 +212,10 @@ void print_array_stat(struct module *mod, double *st_array)
 					/*printf_result(st_array[i]); */
           hdr = info[i].hdr;
 
-				  printf("agents.frank-dev.%s.%s:%.2f|g\n", str_trim2(mod->name),str_trim2(hdr),st_array[i]);
+
+
+				  printf("agents.%s.%s.%s:%.2f|g\n", host_name, str_trim2(mod->name),str_trim2(hdr),st_array[i]);
+
 
 
 			}
