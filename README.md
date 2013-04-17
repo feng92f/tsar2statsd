@@ -1,11 +1,17 @@
 Tsar porting to Statsd
 ----------------------
 
+Port Tsar data to [Statsd](https://github.com/etsy/statsd)
+
+this fork change the live mode printing style, and pipe metrics as gauges to
+statsd server.the metric name is under 'stats.agents', identified by hostname, looks like 'stats.agents.$hostname.mod_cpu.user;
+
+
 $git clone git://github.com/feng92f/tsar.git
 $cd tsar
 $make
 $make install
-$./send.sh
+$tsar-udp
 
 
 
